@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 
     [field:Header("Components")]
 	[field:SerializeField] public CharacterController CharacterController { get; private set; }
-    [field:SerializeField] public PlayerView View { get; private set; }
+	[field:SerializeField] public CharacterGravityController GravityController { get; private set; }
+	[field:SerializeField] public PlayerView View { get; private set; }
 
 	private void Awake()
 	{
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private void TryGetComponents()
     {
 		CharacterController = GetComponent<CharacterController>();
+		GravityController = GetComponent<CharacterGravityController>();
 		View = GetComponentInChildren<PlayerView>();
 	}
 
