@@ -94,14 +94,8 @@ public class PlayerCrouch : MonoBehaviour
 		if (_crouchHeight > _standHeight)
 			_crouchHeight = _standHeight;
 
-		if (_crouchHeight < _characterController.radius * 2)
-			_crouchHeight = _characterController.radius * 2;
-
 		if (CameraOffset > _crouchHeight)
 			CameraOffset = _crouchHeight;
-
-		if (_characterController is not null && _viewTransform is not null)
-			SetStandParams();
 	}
 
 #endif
