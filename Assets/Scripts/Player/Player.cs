@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 	[field:SerializeField] public CharacterController CharacterController { get; private set; }
 	[field:SerializeField] public CharacterGravityController GravityController { get; private set; }
 	[field:SerializeField] public PlayerCrouch Crouch { get; private set; }
+	[field:SerializeField] public PlayerMovement Movement { get; private set; }
 	[field:SerializeField] public PlayerView View { get; private set; }
 
 	private void Awake()
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 		CharacterController = GetComponent<CharacterController>();
 		GravityController = GetComponent<CharacterGravityController>();
 		Crouch = GetComponent<PlayerCrouch>();
+		Movement = GetComponent<PlayerMovement>();
 		View = GetComponentInChildren<PlayerView>();
 	}
 
