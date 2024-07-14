@@ -15,14 +15,10 @@ public class CharacterGravityController : MonoBehaviour
     [SerializeField] private float _maxVelocity = 10f;
     [SerializeField] private float _minVelocity = -10f;
 
-    private CharacterController _characterController;
+	[Header("Components")]
+	[SerializeField] private CharacterController _characterController;
 
-    private Vector3 _fallStartPosition;
-
-	private void Awake()
-	{
-		_characterController = Player.Instance.CharacterController;
-	}
+	private Vector3 _fallStartPosition;
 
 	private void Start()
 	{
