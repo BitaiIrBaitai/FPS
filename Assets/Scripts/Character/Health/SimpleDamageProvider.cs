@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class SimpleDamageProvider : DamageProviderBase
 {
+	public override DamageProviderBase MainProvider => _mainProvider;
+
     [SerializeField] private Health _health;
+	[SerializeField] private DamageProviderBase _mainProvider;
 
     protected override Health GetHealth()
 	{
@@ -17,4 +20,13 @@ public class SimpleDamageProvider : DamageProviderBase
 
 		return totalDamage;
 	}
+
+#if UNITY_EDITOR
+
+	private void Reset()
+	{
+		_mainProvider ??= this;
+	}
+
+#endif
 }

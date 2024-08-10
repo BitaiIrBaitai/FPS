@@ -3,6 +3,7 @@
 public abstract class DamageProviderBase : MonoBehaviour
 {
     public Health Health => GetHealth();
+    public abstract DamageProviderBase MainProvider { get; }
 
     public float Hit(Damage damage)
     {
