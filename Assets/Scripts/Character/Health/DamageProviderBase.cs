@@ -8,7 +8,7 @@ public abstract class DamageProviderBase : MonoBehaviour
     public float Hit(Damage damage)
     {
         float totalDamage = CalculateDamage(damage);
-        float delta = Health.Hit(totalDamage);
+        float delta = Health.Hit(totalDamage, damage);
         return delta;
     }
 

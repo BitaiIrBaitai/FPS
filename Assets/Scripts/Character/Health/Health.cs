@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 		CurrentHealth = MaxHealth;
 	}
 
-	public float Hit(float amount)
+	public float Hit(float amount, Damage damage)
 	{
 		if (CurrentHealth <= 0)
 			return 0;
@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
 		float delta = Mathf.Min(CurrentHealth, amount);
 		CurrentHealth -= delta;
 
-		HealthChangedEventArgs args = new(CurrentHealth, MaxHealth, -delta);
+		HealthChangedEventArgs args = new(CurrentHealth, MaxHealth, -delta, damage);
 		HealthChanged?.Invoke(this, args);
 		HealthDepleted?.Invoke(this, args);
 
@@ -57,7 +57,17 @@ public class Health : MonoBehaviour
 
 	public float Kill()
 	{
-		return Hit(CurrentHealth);
+		DamageUnit unit = new()
+		{
+			Type = DamageType.Kill,
+			Amount = CurrentHealth
+		};
+		Damage damage = new(
+			new[] { unit },
+			transform.position,
+			gameObject);
+
+		return Hit(CurrentHealth, damage);
 	}
 }
 
@@ -67,11 +77,13 @@ public class HealthChangedEventArgs
     public float MaxHealth { get; private set; }
 	public float Delta { get; private set; }
 	public float Percent => CurrentHealth / MaxHealth;
+	public Damage Damage { get; private set; }
 
-	public HealthChangedEventArgs(float currentHealth, float maxHealth, float delta)
+	public HealthChangedEventArgs(float currentHealth, float maxHealth, float delta, Damage damage = null)
 	{
 		CurrentHealth = currentHealth;
 		MaxHealth = maxHealth;
 		Delta = delta;
+		Damage = damage;
 	}
 }
