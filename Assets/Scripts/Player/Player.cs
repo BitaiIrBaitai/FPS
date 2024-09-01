@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 	[field:SerializeField] public PlayerCrouch Crouch { get; private set; }
 	[field:SerializeField] public PlayerMovement Movement { get; private set; }
 	[field:SerializeField] public PlayerView View { get; private set; }
+	[field:SerializeField] public Health Health { get; private set; }
 
 	private bool _blockedByPause = false;
 
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
 		Crouch = GetComponent<PlayerCrouch>();
 		Movement = GetComponent<PlayerMovement>();
 		View = GetComponentInChildren<PlayerView>();
+		Health = GetComponent<Health>();
 	}
 
 #endif
